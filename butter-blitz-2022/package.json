@@ -1,0 +1,91 @@
+{
+  "name": "butter-blitz-2022",
+  "version": "0.1.0",
+  "description": "Butter Blitz 2022 graphics bundle",
+  "homepage": "https://github.com/bashprime/nodecg-grpahics-bundles",
+  "author": "BashPrime",
+  "nodecg": {
+    "compatibleRange": "^1.6.0",
+    "bundleDependencies": {
+      "nodecg-speedcontrol": "^2.2.0"
+    },
+    "assetCategories": [
+      {
+        "name": "sponsorContainer",
+        "title": "Sponsor Images",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      },
+      {
+        "name": "omnibarMarathonLogo",
+        "title": "Omnibar Marathon Logo",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      },
+      {
+        "name": "omnibarCharityLogo",
+        "title": "Omnibar Charity Logo",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "file": "4x3_1p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "4x3_2p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16x9_1p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16x9_2p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16x9_4p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "GBA.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Intermission.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "omnibar/omnibar.html",
+        "width": 1920,
+        "height": 82
+      }
+    ]
+  },
+  "dependencies": {
+    "eventsource": "^2.0.2",
+    "node-fetch": "2.6.1"
+  }
+}
