@@ -1,51 +1,83 @@
 /* Font settings. */
 @font-face {
-	font-family: 'PoorStory Regular';
-	src: url('../fonts/PoorStory-Regular.ttf');
+	font-family: 'Barlow Regular';
+	src: url('../fonts/Barlow-Regular.ttf');
 }
 
 @font-face {
-	font-family: 'MeriendaOne Regular';
-	src: url('../fonts/MeriendaOne-Regular.ttf');
+	font-family: 'Barlow SemiBold';
+	src: url('../fonts/Barlow-SemiBold.ttf');
+}
+
+@font-face {
+	font-family: 'Barlow Bold';
+	src: url('../fonts/Barlow-Bold.ttf');
+}
+
+@font-face {
+	font-family: 'Barlow Black';
+	src: url('../fonts/Barlow-Black.ttf');
 }
 /* You can add an unlimited amount of fonts by copy/pasting @font-face! */
 
 /* General settings. */
 body {
-	font-family: 'PoorStory Regular';
+	font-family: 'Barlow Regular';
 	color: #f9f9f9;
 	width: 1920px;
 	height: 1080px;
 	position: absolute;
+	margin: 10px;
+}
+
+
+/* General position helpers */
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.mar-t {
+	margin-top: 10px;
+}
+
+.mar-b {
+	margin-bottom: 10px;
+}
+
+.mar-l {
+	margin-left: 10px;
+}
+
+.mar-r {
+	margin-right: 10px;
 }
 
 /* Game name panel. */
+#game-container {
+	background: none;
+}
+
 #game-name {
-	font-size: 62pt;
-	font-stretch: semi-condensed;
+	font-size: 72px;
+	font-family: 'Barlow Bold';
 	text-align: center;
-	position: absolute;
-	
-	border: 2px solid transparent;
 }
 
 /* Runner name and pronouns panel. */
 .runner-container {
 	position: absolute;
 	display: flex;
-	
-	border: 2px solid transparent;
 }
 
 .runner-name {
-	margin-right: 15px;
-	font-size: 30pt;
-	font-stretch: semi-condensed;
-	float: left;
-	vertical-align: middle;
-	width: 100%;
-
-	border: 2px solid white;
+	font-size: 32px;
+	font-family: 'Barlow Bold';
 }
 
 .pronouns {
@@ -79,13 +111,21 @@ body {
 	border: 2px solid white;
 }
 
+/* Category, estimate, console, player info */
+.info-box {
+	font-size: 32px;
+	font-family: 'Barlow Bold';
+	background-color: #3a3a3a;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding: 0 5px;
+}
+
 /* Category and estimate panel. */
 #info-container {
-	font-size: 21pt;
-	position: absolute;
 	display: flex;
-	
-	border: 2px solid transparent;
 }
 
 /* Stopwatch image height. */
@@ -93,10 +133,8 @@ body {
 	height: 21pt;
 }
 
-#category {
-	float: left;
-	vertical-align: middle;
-	flex: 1;
+#category, #estimate {
+	text-align: center;
 }
 
 #info {
@@ -117,18 +155,16 @@ body {
 }
 
 #estimate {
+	font-size: 28px;
 	display: inline-block;
-	margin-top: 3px;
 }
 
 /* Timer panel. */
 #timer {
-	font-family: 'MeriendaOne Regular';
-	font-size: 72pt;
+	font-family: 'Barlow Bold';
+	font-size: 108px;
 	text-align: center;
-	position: absolute;
-	
-	border: 2px solid transparent;
+	background: none;
 }
 
 .timer_stopped {

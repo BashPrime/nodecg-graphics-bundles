@@ -23,10 +23,10 @@ $(() => {
 			let currentTeamsData = runData.teams;
 			gameSystem.html(runData.system);
 			gameYear.html(runData.release);
-			gameEstimate.html(runData.estimate);
 
-			fadeHtml('#game-name', runData.game.toUpperCase(), true);
+			fadeHtml('#game-name', runData.game, true);
 			fadeHtml('#category', runData.category, true);
+			fadeHtml('#estimate', `EST ${runData.estimate}`, true);
 
 			$('.runner-name').add('.pronouns').text('');
 			$('.runner-details').data('teamID', '');
