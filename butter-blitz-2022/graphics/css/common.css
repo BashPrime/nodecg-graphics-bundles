@@ -67,6 +67,7 @@ body {
 	font-size: 72px;
 	font-family: 'Barlow Bold';
 	text-align: center;
+	color: #f4b938;
 }
 
 /* Runner name and pronouns panel. */
@@ -81,10 +82,10 @@ body {
 }
 
 .pronouns {
-	font-size: 27pt;
-	vertical-align: middle;
-	text-align: right;
-	float: right;
+	font-size: 24px;
+	color: #3a3a3a;
+	background-color: #f4b938;
+	padding: 0 2px;
 }
 
 .medals {
@@ -116,6 +117,7 @@ body {
 	font-size: 32px;
 	font-family: 'Barlow Bold';
 	background-color: #3a3a3a;
+	color: #f9f9f9;
 	display: flex;
 	text-align: center;
 	align-items: center;
@@ -164,6 +166,7 @@ body {
 	font-family: 'Barlow Bold';
 	font-size: 108px;
 	text-align: center;
+	color: #f4b938;
 	background: none;
 }
 
