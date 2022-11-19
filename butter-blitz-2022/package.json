@@ -46,6 +46,41 @@
         "file": "4x3_1p.html",
         "width": 1920,
         "height": 1080
+      },
+      {
+        "file": "4x3_2p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16x9_1p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "16x9_2p.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "GBA.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "MP_CGC.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Poke_Crystal_Rando.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Omnibar.html",
+        "width": 1920,
+        "height": 83
       }
     ]
   },

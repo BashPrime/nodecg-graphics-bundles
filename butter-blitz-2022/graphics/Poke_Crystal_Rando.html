@@ -5,10 +5,10 @@
 	  
       <!-- CSS -->
       <link rel="stylesheet" href="css/common.css" />
-      <link rel="stylesheet" href="css/16x9_2p.css" />
+      <link rel="stylesheet" href="css/Poke_Crystal_Rando.css" />
       <style>
          body {
-         background: url('img/layouts/16x9_2p.png') no-repeat;
+         background: url('img/layouts/Poke_Crystal_Rando.png') no-repeat;
          }
       </style>
 	  
@@ -18,7 +18,7 @@
       <script src="js/utils.js"></script>
       <script src="js/timer.js"></script>
       <script src="js/medals.js"></script>
-      <script src="js/sponsors.js"></script>
+	  <script src="js/sponsors.js"></script>
    </head>
    
    <body>
@@ -32,6 +32,10 @@
          <div class="runner-name mar-r" id="runner-name2"></div>
          <div class="pronouns" id="pronouns2"></div>
       </div>
+      <div class="runner-container info-box" id="runner-container3">
+         <div class="runner-name mar-r" id="runner-name3"></div>
+         <div class="pronouns" id="pronouns3"></div>
+      </div>
    
       <!-- Game info -->
       <div id="info-container" class="flex-col">
@@ -42,18 +46,15 @@
          <div class="info-box mar-b">
             <div id="category"></div>
          </div>
-         <div class="flex-row">
-            <div class="info-box mar-r" style="flex: 2">
-               <div id="console">GBI / 2001</div>
-            </div>
-            <div class="info-box" style="flex: 1">
-               <div id="estimate"></div>
-            </div>
+         <div class="info-box mar-b">
+            <div id="console">GBI / 2001</div>
          </div>
+         <div class="info-box">
+            <div id="estimate"></div>
+         </div>
+         <!-- Timer -->
+         <div id="timer" class="info-box"></div>
       </div>
-
-      <!-- Timer -->
-      <div id="timer" class="info-box"></div>
    
       <!-- Sponsor area -->
       <div id="sponsor-container">

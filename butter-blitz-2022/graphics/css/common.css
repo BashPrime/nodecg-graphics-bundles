@@ -27,9 +27,10 @@ body {
 	width: 1920px;
 	height: 1080px;
 	position: absolute;
-	margin: 10px;
+	padding: 10px;
+	margin: 0;
+	box-sizing: border-box;
 }
-
 
 /* General position helpers */
 .flex-row {
@@ -118,11 +119,11 @@ body {
 	font-family: 'Barlow Bold';
 	background-color: #3a3a3a;
 	color: #f9f9f9;
+	height: 40px;
 	display: flex;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	padding: 0 5px;
 }
 
 /* Category and estimate panel. */
@@ -133,10 +134,6 @@ body {
 /* Stopwatch image height. */
 #estimate-label img {
 	height: 21pt;
-}
-
-#category, #estimate {
-	text-align: center;
 }
 
 #info {
@@ -179,7 +176,7 @@ body {
 }
 
 .timer_finished {
-	color: #50ff50;
+	color: #00ff00;
 }
 
 /* Sponsor panel. */
