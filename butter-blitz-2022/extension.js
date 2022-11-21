@@ -7,11 +7,18 @@ module.exports = (nodecg) => {
 	const data = nodecg.Replicant('data', { defaultValue: {} });
 	const runDataArray = nodecg.Replicant('runDataArray', 'nodecg-speedcontrol');
 	const runDataActiveRun = nodecg.Replicant('runDataActiveRun', 'nodecg-speedcontrol');
+	const targetData = nodecg.Replicant('targetData', '');
+	const pollData = nodecg.Replicant('pollData', '');
+	const rewardData = nodecg.Replicant('rewardData', '');
+	const campaignData = nodecg.Replicant('campaignData', '');
+	const donationTotal = nodecg.Replicant('donationTotal', 0);
+	const currency = nodecg.Replicant('currency', '');
 
 	runDataActiveRun.on('change', (newVal, oldVal) => {
 		if (oldVal) {
 			let index = runDataArray.value.findIndex(x => x.id === newVal.id);
 			data.value.runs = JSON.parse(JSON.stringify(runDataArray.value.slice(index + 1, index + 6)))
+			if (newVal.customData && newVal.customData.host) data.value.host = newVal.customData.host;
 		}
 	})
 
@@ -20,14 +27,14 @@ module.exports = (nodecg) => {
 		case (nodecg.bundleConfig.tiltify.active): useTiltify(); break;
 		case (nodecg.bundleConfig.oengus.active): useOengus(); break;
 		case (nodecg.bundleConfig.indiethonTracker.active): useTracker(); break;
-		default: nodecg.log.error('No data source selected! Please select a data source in the config.'); process.exit();
+		default: nodecg.log.warn('No data source selected! Donations and incentives won\'t show up on layouts.'); break;
 	}
 
 	async function useTiltify() {
 		let res = await fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}`, {
 			method: 'GET',
 			headers: {
-				'Authorization': `Bearer ${nodecg.bundleConfig.donation.tiltifyAuthToken}`
+				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
 			},
 			dataType: 'json',
 		});
@@ -36,11 +43,12 @@ module.exports = (nodecg) => {
 			nodecg.log.error("There was an issue retriving your Tiltify campaign information. Make sure your campaign ID and auth token are correct!")
 			return process.exit();
 		}
-		nodecg.log.info(`Connected to campaign ID ${nodecg.bundleConfig.donation.tiltifyCampaignID}!`)
-		getTiltifyData()
+		nodecg.log.info(`Connected to campaign ID ${nodecg.bundleConfig.tiltify.campaignID}!`);
+		currency.value = '$';
+		getTiltifyData();
 		setInterval(() => {
 			getTiltifyData()
-		}, nodecg.bundleConfig.tiltify.refreshTime)
+		}, nodecg.bundleConfig.tiltify.refreshTime);
 	}
 
 	async function useOengus() {
@@ -115,8 +123,8 @@ module.exports = (nodecg) => {
 		let bidwarArray = [];
 		for (const incentive of incentiveData) {
 			let name = `${incentive.run.game} ${incentive.name}`;
-			if (incentive.type === 'target' && incentive.active && new Date(incentive.endTime) > new Date()) targetArray.push({ name: name, total: incentive.total, goal: incentive.goal, endTime: incentive.endTime });
-			else if (incentive.type === 'bidwar' && incentive.active && new Date(incentive.endTime) > new Date()) bidwarArray.push({ name: name, options: incentive.options, endTime: incentive.endTime });
+			if (incentive.type === 'target' && incentive.active && !incentive.completed && new Date(incentive.endTime) > new Date()) targetArray.push({ name: name, total: incentive.total, goal: incentive.goal, endTime: incentive.endTime });
+			else if (incentive.type === 'bidwar' && incentive.active && !incentive.completed && new Date(incentive.endTime) > new Date()) bidwarArray.push({ name: name, options: incentive.options, endTime: incentive.endTime });
 		}
 
 		targetArray = targetArray.sort((a, b) => { new Date(a.endTime) - new Date(b.endTime) });
@@ -144,26 +152,18 @@ module.exports = (nodecg) => {
 
 		prizeArray = prizeArray.sort((a, b) => { new Date(a.endTime) - new Date(b.endTime) });
 
-		data.value = {
-			event: {
-				name: eventData.name,
-				charity: eventData.charity.name,
-				url: nodecg.bundleConfig.indiethonTracker.apiUrl,
-				total: eventData.stats.total,
-				goal: eventData.targetAmount,
-				currency: details.currencySymbol,
-				timestamp: Date.now(),
-			},
-			targets: targetArray,
-			bidwars: bidwarArray,
-			prizes: prizeArray,
-			runs: [],
+		data.value.event = {
+			name: eventData.name,
+			charity: eventData.charity.name,
+			url: nodecg.bundleConfig.indiethonTracker.apiUrl,
+			total: eventData.stats.total,
+			goal: eventData.targetAmount,
+			currency: details.currencySymbol,
+			timestamp: Date.now(),
 		};
-
-		if (runDataArray.value.length > 0 && runDataActiveRun.value !== undefined) {
-			let index = runDataArray.value.findIndex(x => x.id === runDataActiveRun.value.id);
-			data.value.runs = JSON.parse(JSON.stringify(runDataArray.value.slice(index + 1, index + 6)));
-		}
+		data.value.targets = targetArray;
+		data.value.bidwars = bidwarArray;
+		data.value.prizes = prizeArray;
 	};
 
 	async function getOengusData() {
@@ -220,26 +220,116 @@ module.exports = (nodecg) => {
 
 		// prizeArray = prizeArray.sort((a, b) => { new Date(a.endTime) - new Date(b.endTime) });
 
-		data.value = {
-			event: {
-				name: details.name,
-				charity: details.supportedCharity,
-				url: '',
-				total: details.donationsTotal,
-				goal: 0,
-				currency: currencies[details.donationCurrency],
-				timestamp: Date.now(),
-			},
-			targets: [],
-			bidwars: [],
-			prizes: [],
-			runs: [],
+		data.value.event = {
+			name: details.name,
+			charity: details.supportedCharity,
+			url: '',
+			total: details.donationsTotal,
+			goal: 0,
+			currency: currencies[details.donationCurrency],
+			timestamp: Date.now(),
 		};
+		data.value.targets = [];
+		data.value.bidwars = [];
+		data.value.prizes = [];
+	}
 
-		if (runDataArray.value.length > 0 && runDataActiveRun.value !== undefined) {
-			let index = runDataArray.value.findIndex(x => x.id === runDataActiveRun.value.id);
-			data.value.runs = JSON.parse(JSON.stringify(runDataArray.value.slice(index + 1, index + 6)));
-		}
+	function getTiltifyData() {
+		// Get campaign data.
+		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
+			},
+			dataType: 'json',
+		}).then(response => response.json())
+			.then(data => {
+				campaignData.value = { name: data.data.name, url: data.data.url, description: data.data.description, currentAmount: data.data.amountRaised, targetAmount: data.data.fundraiserGoalAmount }
+				donationTotal.value = data.data.amountRaised;
+			}).catch(error => {
+				nodecg.log.warn('There was an error retrieving Tiltify campaign info.');
+				nodecg.log.warn(error);
+			});
+
+		// Get targets.
+		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}/challenges`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
+			},
+			dataType: 'json',
+		}).then(response => response.json())
+			.then(targets => {
+				let targetArray = [];
+				if (targets.data !== '') {
+					targets.data.forEach(element => {
+						if ((element.endsAt > new Date().getTime() || element.endsAt === 0) && element.totalAmountRaised < element.amount && element.active) {
+							if (element.endsAt === 0)
+								element.endsAt = 9999999999999;
+							targetArray.push({ name: element.name, currentAmount: element.amount, targetAmount: element.totalAmountRaised, endsAt: element.endsAt, id: element.id })
+						}
+					})
+					targetArray.sort((a, b) => a.endsAt - b.endsAt);
+					targetData.value = { dataLength: targetArray.length, data: targetArray };
+				}
+			}).catch(error => {
+				nodecg.log.warn('There was an error retrieving Tiltify targets.');
+				nodecg.log.warn(error);
+			});
+
+		// Get polls.
+		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}/polls`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
+			},
+			dataType: 'json',
+		}).then(response => response.json())
+			.then(polls => {
+				let pollArray = [];
+				if (polls.data !== '') {
+					polls.data.forEach(element => {
+						if (element.active) {
+							let pollOptionArray = [];
+							element.options.forEach(pollOption => {
+								pollOptionArray.push({ name: pollOption.name, currentAmount: pollOption.totalAmountRaised })
+							})
+							pollOptionArray.sort((a, b) => b.currentAmount - a.currentAmount);
+							pollArray.push({ name: element.name, options: pollOptionArray, id: element.id })
+						}
+					})
+					pollData.value = { dataLength: pollArray.length, data: pollArray };
+				}
+			}).catch(error => {
+				nodecg.log.warn('There was an error retrieving Tiltify polls.');
+				nodecg.log.warn(error);
+			});
+
+		// Get rewards.
+		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}/rewards`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
+			},
+			dataType: 'json',
+		}).then(response => response.json())
+			.then(rewards => {
+				let rewardArray = [];
+				if (rewards.data !== '') {
+					rewards.data.forEach(element => {
+						if ((element.startsAt > new Date().getTime() || element.startsAt === 0) && (element.endsAt > new Date().getTime() || element.endsAt === 0) && element.active) {
+							if (element.endsAt === 0)
+								element.endsAt = 9999999999999;
+							rewardArray.push({ name: element.name, description: element.description, minDonation: element.amount, endsAt: element.endsAt, img: element.image.src, id: element.id })
+						}
+					})
+					rewardArray.sort((a, b) => a.endsAt - b.endsAt);
+					rewardData.value = { dataLength: rewardArray.length, data: rewardArray };
+				}
+			}).catch(error => {
+				nodecg.log.warn('There was an error retrieving Tiltify rewards.');
+				nodecg.log.warn(error);
+			});
 	}
 }
 
@@ -267,10 +357,10 @@ module.exports = (nodecg) => {
 
 // function test() {
 // 	if (nodecg.bundleConfig.tiltify.active) {
-// 		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.donation.tiltifyCampaignID}`, {
+// 		fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}`, {
 // 			method: 'GET',
 // 			headers: {
-// 				'Authorization': `Bearer ${nodecg.bundleConfig.donation.tiltifyAuthToken}`
+// 				'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
 // 			},
 // 			dataType: 'json',
 // 		}).then(response => response.json())
@@ -278,7 +368,7 @@ module.exports = (nodecg) => {
 // 				if (data.status === (403 || 500))
 // 					nodecg.log.error("There was an issue retriving your Tiltify campaign information. Make sure your campaign ID and auth token are correct!")
 // 				else {
-// 					nodecg.log.info(`Connected to campaign ID ${nodecg.bundleConfig.donation.tiltifyCampaignID}!`)
+// 					nodecg.log.info(`Connected to campaign ID ${nodecg.bundleConfig.tiltify.campaignID}!`)
 // 					getTiltifyData()
 // 					setInterval(() => {
 // 						getTiltifyData()
@@ -309,104 +399,6 @@ module.exports = (nodecg) => {
 // 				}
 // 			})
 // 	}
-// }
-
-// function getTiltifyData() {
-// 	// Get campaign data.
-// 	fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.tiltify.campaignID}`, {
-// 		method: 'GET',
-// 		headers: {
-// 			'Authorization': `Bearer ${nodecg.bundleConfig.tiltify.authToken}`
-// 		},
-// 		dataType: 'json',
-// 	}).then(response => response.json())
-// 		.then(data => {
-// 			campaignData.value = { name: data.data.name, url: data.data.url, description: data.data.description, currentAmount: data.data.amountRaised, targetAmount: data.data.fundraiserGoalAmount }
-// 			donationTotal.value = data.data.amountRaised;
-// 		}).catch(error => {
-// 			nodecg.log.warn('There was an error retrieving Tiltify campaign info.');
-// 			nodecg.log.warn(error);
-// 		});
-
-// 	// Get targets.
-// 	fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.donation.tiltifyCampaignID}/challenges`, {
-// 		method: 'GET',
-// 		headers: {
-// 			'Authorization': `Bearer ${nodecg.bundleConfig.donation.tiltifyAuthToken}`
-// 		},
-// 		dataType: 'json',
-// 	}).then(response => response.json())
-// 		.then(targets => {
-// 			let targetArray = [];
-// 			if (targets.data !== '') {
-// 				targets.data.forEach(element => {
-// 					if ((element.endsAt > new Date().getTime() || element.endsAt === 0) && element.totalAmountRaised < element.amount && element.active) {
-// 						if (element.endsAt === 0)
-// 							element.endsAt = 9999999999999;
-// 						targetArray.push({ name: element.name, currentAmount: element.amount, targetAmount: element.totalAmountRaised, endsAt: element.endsAt, id: element.id })
-// 					}
-// 				})
-// 				targetArray.sort((a, b) => a.endsAt - b.endsAt);
-// 				targetData.value = { dataLength: targetArray.length, data: targetArray };
-// 			}
-// 		}).catch(error => {
-// 			nodecg.log.warn('There was an error retrieving Tiltify targets.');
-// 			nodecg.log.warn(error);
-// 		});
-
-// 	// Get polls.
-// 	fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.donation.tiltifyCampaignID}/polls`, {
-// 		method: 'GET',
-// 		headers: {
-// 			'Authorization': `Bearer ${nodecg.bundleConfig.donation.tiltifyAuthToken}`
-// 		},
-// 		dataType: 'json',
-// 	}).then(response => response.json())
-// 		.then(polls => {
-// 			let pollArray = [];
-// 			if (polls.data !== '') {
-// 				polls.data.forEach(element => {
-// 					if (element.active) {
-// 						let pollOptionArray = [];
-// 						element.options.forEach(pollOption => {
-// 							pollOptionArray.push({ name: pollOption.name, currentAmount: pollOption.totalAmountRaised })
-// 						})
-// 						pollOptionArray.sort((a, b) => b.currentAmount - a.currentAmount);
-// 						pollArray.push({ name: element.name, options: pollOptionArray, id: element.id })
-// 					}
-// 				})
-// 				pollData.value = { dataLength: pollArray.length, data: pollArray };
-// 			}
-// 		}).catch(error => {
-// 			nodecg.log.warn('There was an error retrieving Tiltify polls.');
-// 			nodecg.log.warn(error);
-// 		});
-
-// 	// Get rewards.
-// 	fetch(`https://tiltify.com/api/v3/campaigns/${nodecg.bundleConfig.donation.tiltifyCampaignID}/rewards`, {
-// 		method: 'GET',
-// 		headers: {
-// 			'Authorization': `Bearer ${nodecg.bundleConfig.donation.tiltifyAuthToken}`
-// 		},
-// 		dataType: 'json',
-// 	}).then(response => response.json())
-// 		.then(rewards => {
-// 			let rewardArray = [];
-// 			if (rewards.data !== '') {
-// 				rewards.data.forEach(element => {
-// 					if ((element.startsAt > new Date().getTime() || element.startsAt === 0) && (element.endsAt > new Date().getTime() || element.endsAt === 0) && element.active) {
-// 						if (element.endsAt === 0)
-// 							element.endsAt = 9999999999999;
-// 						rewardArray.push({ name: element.name, description: element.description, minDonation: element.amount, endsAt: element.endsAt, img: element.image.src, id: element.id })
-// 					}
-// 				})
-// 				rewardArray.sort((a, b) => a.endsAt - b.endsAt);
-// 				rewardData.value = { dataLength: rewardArray.length, data: rewardArray };
-// 			}
-// 		}).catch(error => {
-// 			nodecg.log.warn('There was an error retrieving Tiltify rewards.');
-// 			nodecg.log.warn(error);
-// 		});
 // }
 
 // function getOengusData() {
