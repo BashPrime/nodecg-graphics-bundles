@@ -9,7 +9,7 @@ NodeCG.waitForReplicants(currencyRep, donationTotal).then(() => {
 	currencyRep.on('change', (newVal) => {
 		currency = newVal;
 	});
-	donationTotal.on('change', (newVal) => handleCountUp(0));
+	donationTotal.on('change', (newVal) => handleCountUp(newVal));
 
 	function handleCountUp(amount) {
 		if (!countUp) {
