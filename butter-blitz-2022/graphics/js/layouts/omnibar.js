@@ -26,8 +26,8 @@ async function setText(type, index, value) {
 	try {
 		if (type === "message") {
 			text.message = [
-				`<p class="singleLine">Indiethon Fall Follies 2022 is raising money for <span class="singleLine secondary">Caudwell Children</span></p>`,
-				`<p class="singleLine">Donate at <span class="singleLine secondary">tracker.indiethon.live/donate</span></p>`
+				`<p class="singleLine">Butter Blitz is benefiting the <span class="singleLine secondary">ACLU</span></p>`,
+				`<p class="singleLine">Donate at <span class="singleLine secondary">donate.bashprime.com</span></p>`
 			];
 		}
 
@@ -74,11 +74,11 @@ async function setText(type, index, value) {
 			]
 		}
 
-		else if (type === "goal") {
-			text.goal = [
-				`<p class="singleLine">Event Goal: $${value.event.goal}</p>`,
-			]
-		}
+		// else if (type === "goal") {
+		// 	text.goal = [
+		// 		`<p class="singleLine">Event Goal: $${value.event.goal}</p>`,
+		// 	]
+		// }
 
 		return text[type][index];
 
