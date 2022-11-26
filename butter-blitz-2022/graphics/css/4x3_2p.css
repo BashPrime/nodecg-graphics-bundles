@@ -42,17 +42,3 @@
 	position: absolute;
 	bottom: 93px;
 }
-
-/* Sponsor panel. */
-#sponsor-container {
-	width: 585px;
-	height: 300px;
-	line-height: 300px;
-	left: 0;
-	top: 694px;
-}
-
-/* Sponsor image max size. */
-img#sponsor-img {
-	max-width: 45%;
-}

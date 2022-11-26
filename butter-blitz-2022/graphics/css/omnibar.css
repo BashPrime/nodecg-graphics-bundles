@@ -30,8 +30,8 @@ body {
     background-color: var(--omnibar-background-color);
     display: flex;
     width: 1920px;
-    height: 82px;
-    border-top: 2px solid var(--omnibar-border-color);
+    height: 83px;
+    border-top: 3px solid var(--omnibar-border-color);
 }
 
 #omnibarContent {

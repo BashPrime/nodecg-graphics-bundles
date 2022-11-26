@@ -38,14 +38,14 @@
 
 /* Sponsor panel. */
 #sponsor-container {
-	width: 585px;
-	height: 300px;
-	line-height: 300px;
-	left: 0;
-	top: 694px;
+	width: 574px;
+	height: 234px;
+	left: 10px;
+	bottom: 93px;
 }
 
 /* Sponsor image max size. */
 img#sponsor-img {
-	max-width: 45%;
+	max-width: 80%;
+	max-height: 100%;
 }
