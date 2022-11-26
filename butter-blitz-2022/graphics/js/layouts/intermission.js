@@ -39,14 +39,17 @@ function loadFromSpeedControl() {
 }
 
 function refreshNextRunsData(currentRun) {
-	let nextRuns = getNextRuns(currentRun, 2);
+	const NUM_RUNS = 3;
+	let nextRuns = getNextRuns(currentRun, NUM_RUNS);
 
 	let upNextGame = '#up-next-game';
-	let upNextInfo = '#up-next-info';
+	let upNextNames = '#up-next-names';
+	let upNextCategory = '#up-next-category';
 	let upNextEstimate = '#up-next-estimate';
 	fadeHtml(upNextGame, currentRun.game, true);
-	fadeHtml(upNextInfo, getNamesForRun(runDataActiveRun.value).join(', '), true);
-	fadeHtml(upNextEstimate, currentRun.estimate, true);
+	fadeHtml(upNextCategory, currentRun.category, true);
+	fadeHtml(upNextNames, getNamesForRun(runDataActiveRun.value).join(', '), true);
+	fadeHtml(upNextEstimate, 'EST ' + currentRun.estimate, true);
 	if (nodecg.bundleConfig.customData.useCustomHost && currentRun.customData.host !== undefined)
 		fadeHtml('#host', "Host: " + currentRun.customData.host);
 	else
@@ -54,15 +57,17 @@ function refreshNextRunsData(currentRun) {
 
 	let i = 0;
 	for (let run of nextRuns) {
-		if (i >= 2) {
+		if (i >= NUM_RUNS) {
 			break;
 		}
 		let onDeckGame = '#on-deck-game' + (i + 1);
-		let onDeckRunner = '#on-deck-info' + (i + 1);
+		let onDeckNames = '#on-deck-names' + (i + 1);
+		let onDeckCategory = '#on-deck-category' + (i + 1);
 		let onDeckEstimate = '#on-deck-estimate' + (i + 1);
 		fadeHtml(onDeckGame, run.game, true);
-		fadeHtml(onDeckRunner, getNamesForRun(run).join(', '), true);
-		fadeHtml(onDeckEstimate, run.estimate, true);
+		fadeHtml(onDeckNames, getNamesForRun(run).join(', '), true);
+		fadeHtml(onDeckCategory, run.category, true);
+		fadeHtml(onDeckEstimate, 'EST ' + run.estimate, true);
 		i += 1;
 	}
 }

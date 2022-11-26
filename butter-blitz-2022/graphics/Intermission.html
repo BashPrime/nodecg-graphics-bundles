@@ -8,7 +8,7 @@
       <link rel="stylesheet" href="css/intermission.css" />
       <style>
          body {
-         background: url('img/layouts/Intermission.png') no-repeat;
+         background: url('img/layouts/BP_Tiled_Background.png') no-repeat;
          }
       </style>
 	  
@@ -29,41 +29,77 @@
 	  <!-- Donation Total -->
       <div id="donationTotal">
       </div>
-	  
-	  <!-- Next Run -->
-      <div id="up-next-label">Up Next</div>
-      <div id="up-next-game"></div>
-      <div id="up-next-info-container">
-         <div class="info" id="up-next-info"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
+
+      <!-- Upcoming Runs -->
+      <div id="upcoming-runs-container" class="flex-col">
+         <span id="up-next-label" class="mar-b">Up Next</span>
+         <div class="separator"></div>
+         <!-- Next Run -->
+         <div class="flex-col mar-b">
+            <div class="game-container info-box mar-b">
+               <div id="up-next-game"></div>
             </div>
-            <div class="estimate" id="up-next-estimate"></div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="up-next-names"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="up-next-category"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="up-next-estimate"></div>
+               </div>
+            </div>
+         </div>
+         <!-- On Deck Runs -->
+         <div id="on-deck-runs-container" class="flex-col">
+            <!-- On Deck 1 -->
+            <div class="game-container info-box mar-b">
+               <div id="on-deck-game1" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row mar-b">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names1"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category1"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate1"></div>
+               </div>
+            </div>
+            <!-- On Deck 2 -->
+            <div class="game-container info-box mar-b">
+               <div id="on-deck-game2" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row mar-b">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names2"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category2"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate2"></div>
+               </div>
+            </div>
+            <!-- On Deck 3 -->
+            <div class="game-container info-box mar-b">
+               <div id="on-deck-game3" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names3"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category3"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate3"></div>
+               </div>
+            </div>
          </div>
       </div>
-	  
-	  <!-- On Deck Runs -->
-      <div id="on-deck-label">On Deck</div>
-      <div class="on-deck-game" id="on-deck-game1"></div>
-      <div id="on-deck-info-container1">
-         <div class="info" id="on-deck-info1"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
-            </div>
-            <div class="estimate" id="on-deck-estimate1"></div>
-         </div>
-      </div>
-      <div class="on-deck-game" id="on-deck-game2"></div>
-      <div id="on-deck-info-container2">
-         <div class="info" id="on-deck-info2"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
-            </div>
-            <div class="estimate" id="on-deck-estimate2"></div>
-         </div>
-      </div>
+
    </body>
 </html>

@@ -63,6 +63,11 @@
         "height": 1080
       },
       {
+        "file": "DS.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "GBA.html",
         "width": 1920,
         "height": 1080
@@ -74,6 +79,11 @@
       },
       {
         "file": "Poke_Crystal_Rando.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Intermission.html",
         "width": 1920,
         "height": 1080
       },

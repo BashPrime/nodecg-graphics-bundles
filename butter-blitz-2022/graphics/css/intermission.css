@@ -1,7 +1,6 @@
 /* Donation Total panel. */
-#donation-total {
-	font-size: 108pt;
-	font-stretch: semi-condensed;
+#donationTotal {
+	font-size: 100px;
 	width: 420px;
 	line-height: 180px;
 	text-align: center;
@@ -11,8 +10,28 @@
 	
 	padding-left: 15px;
 	padding-right: 15px;
-	
-	border: 2px solid transparent;
+}
+
+.separator {
+	margin-bottom: 20px;
+}
+
+.flex-row > .info-box {
+	padding: 0 10px;
+}
+
+/* Next runs container. */
+#upcoming-runs-container {
+	width: 855px;
+}
+
+#on-deck-runs-container {
+	width: 700px;
+}
+
+.game-container {
+	height: 80px;
+	background: none;
 }
 
 /* Host panel. */
@@ -32,29 +51,20 @@
 
 /* Up Next label. */
 #up-next-label {
-	font-size: 24pt;
-	width: 642px;
-	position: absolute;
-	top: 226px;
-	left: 1240px;
-	
-	border: 2px solid transparent;
+	font-size: 72px;
+	color: #f9f9f9;
+	font-family: 'Barlow SemiBold'
 }
 
 /* Game panel. */
 #up-next-game {
-	font-size: 60pt;
-	font-stretch: semi-condensed;
-	width: 650px;
-	line-height: 132px;
-	position: absolute;
-	top: 270px;
-	left: 1240px;
-	
-	padding-left: 15px;
-	padding-right: 15px;
-	
-	border: 2px solid transparent;
+	font-size: 72px;
+	color: #f4b938;
+}
+
+.on-deck-game {
+	font-size: 60px;
+	color: #f4b938;
 }
 
 /* Up Next info panel. */
@@ -73,105 +83,7 @@
 
 /* Runner name dynamic text. */
 #up-next-info {
-	max-width: 450px;
-	
-	border: 2px solid transparent;	
-}
-
-/* On Deck label. */
-#on-deck-label {
-	font-size: 24pt;
-	width: 573px;
-	position: absolute;
-	top: 519px;
-	left: 1320px;
-	
-	border: 2px solid transparent;
-}
-
-/* On deck game 1. */
-#on-deck-game1 {
-	font-size: 54pt;
-	font-stretch: semi-condensed;
-	width: 572px;
-	line-height: 110px;
-	position: absolute;
-	top: 561px;
-	left: 1320px;
-	
-	padding-left: 15px;
-	padding-right: 7.5px;
-	
-	border: 2px solid transparent;
-}
-
-/* On deck info panel 1. */
-#on-deck-info-container1 {
-	width: 515px;
-	line-height: 55px;
-	position: absolute;
-	top: 675px;
-	left: 1377px;
-	
-	padding-left: 15px;
-	padding-right: 7.5px;
-	
-	border: 2px solid transparent;
-}
-
-/* Runner name dynamic text. */
-#on-deck-info1 {
-	max-width: 345px;
-	
-	border: 2px solid transparent;	
-}
-
-/* On deck game 2. */
-#on-deck-game2 {
-	font-size: 54pt;
-	font-stretch: semi-condensed;
-	width: 572px;
-	line-height:110px;
-	position: absolute;
-	top: 792px;
-	left: 1320px;
-	
-	padding-left: 10px;
-	padding-right: 5px;
-	
-	border: 2px solid transparent;
-}
-
-/* On deck info panel 2. */
-#on-deck-info-container2 {
-	width: 515px;
-	line-height: 55px;
-	position: absolute;
-	top: 906px;
-	left: 1377px;
-	
-	padding-left: 15px;
-	padding-right: 7.5px;
-	
-	border: 2px solid transparent;
-}
-
-/* Runner name dynamic text. */
-#on-deck-info2 {
-	max-width: 345px;
-	
-	border: 2px solid transparent;	
-}
-
-/* Info panel options. Don't change unless you know what you're doing! */
-.info {
-	margin-top: 3px;
-	font-size: 22pt;
-	font-stretch: semi-condensed;
-	float: left;
-	vertical-align: middle;
-	width: 100%;
-	flex: 1;
+	max-width: 450px;	
 }
 
 .estimate-container {
