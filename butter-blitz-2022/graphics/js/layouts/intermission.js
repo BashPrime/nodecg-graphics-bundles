@@ -50,10 +50,14 @@ function refreshNextRunsData(currentRun) {
 	fadeHtml(upNextCategory, currentRun.category, true);
 	fadeHtml(upNextNames, getNamesForRun(runDataActiveRun.value).join(', '), true);
 	fadeHtml(upNextEstimate, 'EST ' + currentRun.estimate, true);
-	if (nodecg.bundleConfig.customData.useCustomHost && currentRun.customData.host !== undefined)
-		fadeHtml('#host', "Host: " + currentRun.customData.host);
-	else
+	if (nodecg.bundleConfig.customData.useCustomHost && currentRun.customData.host !== undefined) {
+		fadeHtml('#host', 'Host: ' + currentRun.customData.host);
+		fadeHtml('#hostPronouns', currentRun.customData.hostPronouns);
+	}
+	else {
 		fadeHtml('#host', '');
+		fadeHtml('#hostPronouns', '');
+	}
 
 	let i = 0;
 	for (let run of nextRuns) {
