@@ -25,13 +25,13 @@
    
 	  <!-- Host -->
       <div id="hostMusicContainer">
-         <div id="hostContainer">
-            <div id="host" class="mar-r"></div>
-            <div class="pronouns" id="hostPronouns"></div>
-         </div>
          <div id="musicContainer" class="info-box">
             <div id="musicLabel" class="mar-l mar-r">𝆕</div>
             <div id="music" class="mar-r"></div>
+         </div>
+         <div id="hostContainer">
+            <div id="host" class="mar-r"></div>
+            <div class="pronouns" id="hostPronouns"></div>
          </div>
       </div>
 	  
@@ -47,10 +47,12 @@
 
       <!-- Upcoming Runs -->
       <div id="upcoming-runs-container" class="flex-col">
-         <span id="up-next-label" class="mar-b">Up Next</span>
-         <div class="separator"></div>
+         <div>
+            <span class="upcoming-runs-label">Up Next</span>
+         </div>
+         <!-- <div class="separator"></div> -->
          <!-- Next Run -->
-         <div class="flex-col mar-b">
+         <div class="flex-col">
             <div class="game-container info-box mar-b">
                <div id="up-next-game"></div>
             </div>
@@ -66,8 +68,12 @@
                </div>
             </div>
          </div>
+         <div class="separator" style="margin: 25px 0"></div>
          <!-- On Deck Runs -->
          <div id="on-deck-runs-container" class="flex-col">
+            <div>
+               <span class="upcoming-runs-label">On Deck</span>
+            </div>
             <!-- On Deck 1 -->
             <div class="game-container info-box">
                <div id="on-deck-game1" class="on-deck-game"></div>
@@ -111,6 +117,21 @@
                </div>
                <div class="info-box" style="flex: 1">
                   <div id="on-deck-estimate3"></div>
+               </div>
+            </div>
+            <!-- On Deck 4 -->
+            <div class="game-container info-box">
+               <div id="on-deck-game4" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names4"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category4"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate4"></div>
                </div>
             </div>
          </div>

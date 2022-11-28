@@ -8,7 +8,7 @@
 	align-items: center;
 	width: 1045px;
 	position: absolute;
-	top: 10px;
+	top: 150px;
 	left: 10px;
 }
 
@@ -33,6 +33,7 @@
 #upcoming-runs-container {
 	width: 855px;
 	position: absolute;
+	top: 150px;
 	right: 10px;
 }
 
@@ -50,7 +51,7 @@
     font-size: 48px;
 	font-family: 'Barlow SemiBold';
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     left: 10px;
 	display: flex;
 	flex-direction: column;
@@ -89,10 +90,13 @@
 }
 
 /* Up Next label. */
-#up-next-label {
+.upcoming-runs-label {
 	font-size: 48px;
-	color: #f9f9f9;
+	color: #3a3a3a;
+	background-color: #f4b938;
+	padding: 0 5px;
 	font-family: 'Barlow SemiBold';
+	width: initial;
 }
 
 /* Game panel. */
@@ -109,12 +113,12 @@
 /* Sponsor panel. */
 #sponsor-container {
 	width: 100%;
-	height: 400px;
+	height: 600px;
 	position: initial;
 }
 
 /* Sponsor image max size. */
 img#sponsor-img {
-	max-width: 80%;
+	max-width: 85%;
 	max-height: 100%;
 }

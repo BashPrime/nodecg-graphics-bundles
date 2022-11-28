@@ -39,7 +39,7 @@ function loadFromSpeedControl() {
 }
 
 function refreshNextRunsData(currentRun) {
-	const NUM_RUNS = 3;
+	const NUM_RUNS = 4;
 	let nextRuns = getNextRuns(currentRun, NUM_RUNS);
 
 	let upNextGame = '#up-next-game';
