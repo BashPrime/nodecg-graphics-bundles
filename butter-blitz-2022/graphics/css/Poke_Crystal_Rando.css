@@ -1,26 +1,23 @@
 /* Runner and pronouns panel. */
 .runner-container {
-	width: 626.67px;
+	width: 544px;
+	position: absolute;
+	bottom: 313px;
 }
 
-.runner-container {
-	position: absolute;
-	bottom: 403px;
+#runner-container1 {
+	left: 412px;
 }
 
 #runner-container2 {
-	left: 646.5px;
-}
-
-#runner-container3 {
-	right: 10px;
+	right: 412px;
 }
 
 /* Container for game info */
 #info-container {
-	width: 388.45px;
+	width: 393px;
 	position: absolute;
-	left: 380.55px;
+	left: 10px;
 	bottom: 93px;
 }
 
@@ -33,21 +30,17 @@
 	font-size: 85px;
 }
 
-.info-box #category {
-	padding: 0 7.5px;
-}
-
 /* Timer panel. */
 #timer {
 	font-size: 86px;
-	height: 80px;
+	height: 90px;
 }
 
 /* Sponsor panel. */
 #sponsor-container {
-	width: 389px;
-	height: 300px;
-	right: 381px;
+	width: 393px;
+	height: 259px;
+	right: 10px;
 	bottom: 93px;
 }
 
