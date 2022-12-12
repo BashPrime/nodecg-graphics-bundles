@@ -20,41 +20,47 @@
       <script src="js/medals.js"></script>
       <script src="js/sponsors.js"></script>
    </head>
-   <body>
    
+   <body>
+
       <!-- Runner details -->
-      <div class="runner-container" id="runner-container1">
-         <div class="runner-name" id="runner-name1"></div>
-         <div class="medals" id="medals1">
-            <img class="medals-img" id="medals1-img"/>
-         </div>
-         <div class="finalTime" id="finalTime1"></div>
+      <div class="runner-container info-box" id="runner-container1">
+         <div class="runner-name mar-r" id="runner-name1"></div>
          <div class="pronouns" id="pronouns1"></div>
       </div>
-      <div class="runner-container" id="runner-container2">
-         <div class="runner-name" id="runner-name2"></div>
-         <div class="medals" id="medals2">
-            <img class="medals-img" id="medals2-img" />
-         </div>
-         <div class="finalTime" id="finalTime2"></div>
+      <div class="runner-container info-box" id="runner-container2">
+         <div class="runner-name mar-r" id="runner-name2"></div>
          <div class="pronouns" id="pronouns2"></div>
       </div>
-	  
-      <!-- Game details -->
-      <div id="game-name"></div>
-	  
+   
       <!-- Game info -->
-      <div id="info-container">
-         <div id="category"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
+      <div id="info-container" class="flex-col">
+         <div id="game-container" class="info-box mar-b">
+            <div id="game-name"></div>
+         </div>
+         <!-- <div id="game-info" class="info-box"></div> -->
+         <div class="info-box mar-b">
+            <div id="category"></div>
+         </div>
+         <div class="flex-row">
+            <div class="info-box mar-r" style="flex: 2">
+               <div id="console"></div>
             </div>
-            <div id="estimate"></div>
+            <div class="info-box" style="flex: 1">
+               <div id="estimate"></div>
+            </div>
          </div>
       </div>
-	  
+
       <!-- Timer -->
-      <div id="timer"></div>
+      <div id="timer" class="info-box"></div>
+   
+      <!-- Sponsor area -->
+      <div id="sponsor-container">
+         <img id="sponsor-img" />
+      </div>
+   
+   
    </body>
+
 </html>

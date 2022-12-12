@@ -7,9 +7,9 @@
       <link rel="stylesheet" href="css/common.css" />
       <link rel="stylesheet" href="css/intermission.css" />
       <style>
-         body {
-         background: url('img/layouts/Intermission.png') no-repeat;
-         }
+         /* body {
+         background: url('img/layouts/BP_Tiled_Background.png') no-repeat;
+         } */
       </style>
 	  
       <!-- JavaScript -->
@@ -18,52 +18,124 @@
       <script src="./helpers/countUp.min.js"></script>
       <script src="./helpers/donation.js"></script>
       <script src="js/layouts/intermission.js"></script>
+      <script src="js/sponsors.js"></script>
+
    </head>
    <body>
    
 	  <!-- Host -->
-      <div id="host-container">
-         <span id="host"></span>
-      </div>
-	  
-	  <!-- Donation Total -->
-      <div id="donationTotal">
-      </div>
-	  
-	  <!-- Next Run -->
-      <div id="up-next-label">Up Next</div>
-      <div id="up-next-game"></div>
-      <div id="up-next-info-container">
-         <div class="info" id="up-next-info"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
-            </div>
-            <div class="estimate" id="up-next-estimate"></div>
+      <div id="hostMusicContainer">
+         <div id="musicContainer" class="info-box">
+            <div id="musicLabel" class="mar-l mar-r">𝆕</div>
+            <div id="music" class="mar-r"></div>
+         </div>
+         <div id="hostContainer">
+            <div id="host" class="mar-r"></div>
+            <div class="pronouns" id="hostPronouns"></div>
          </div>
       </div>
 	  
-	  <!-- On Deck Runs -->
-      <div id="on-deck-label">On Deck</div>
-      <div class="on-deck-game" id="on-deck-game1"></div>
-      <div id="on-deck-info-container1">
-         <div class="info" id="on-deck-info1"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
-            </div>
-            <div class="estimate" id="on-deck-estimate1"></div>
+      <!-- Donation Total -->
+      <div id="donationContainer">
+         <div id="donationTotal"></div>
+         <span id="charityText">Raised for the ACLU</span>
+         <!-- Sponsor area -->
+         <div id="sponsor-container">
+            <img id="sponsor-img" />
          </div>
       </div>
-      <div class="on-deck-game" id="on-deck-game2"></div>
-      <div id="on-deck-info-container2">
-         <div class="info" id="on-deck-info2"></div>
-         <div id="estimate-container">
-            <div id="estimate-label">
-               <img src="img/common/timer.svg" />
+
+      <!-- Upcoming Runs -->
+      <div id="upcoming-runs-container" class="flex-col">
+         <div>
+            <span class="upcoming-runs-label">Up Next</span>
+         </div>
+         <!-- <div class="separator"></div> -->
+         <!-- Next Run -->
+         <div class="flex-col">
+            <div class="game-container info-box mar-b">
+               <div id="up-next-game"></div>
             </div>
-            <div class="estimate" id="on-deck-estimate2"></div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="up-next-names"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="up-next-category"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="up-next-estimate"></div>
+               </div>
+            </div>
+         </div>
+         <div class="separator" style="margin: 25px 0"></div>
+         <!-- On Deck Runs -->
+         <div id="on-deck-runs-container" class="flex-col">
+            <div>
+               <span class="upcoming-runs-label">On Deck</span>
+            </div>
+            <!-- On Deck 1 -->
+            <div class="game-container info-box">
+               <div id="on-deck-game1" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row mar-b">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names1"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category1"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate1"></div>
+               </div>
+            </div>
+            <!-- On Deck 2 -->
+            <div class="game-container info-box">
+               <div id="on-deck-game2" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row mar-b">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names2"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category2"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate2"></div>
+               </div>
+            </div>
+            <!-- On Deck 3 -->
+            <div class="game-container info-box">
+               <div id="on-deck-game3" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names3"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category3"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate3"></div>
+               </div>
+            </div>
+            <!-- On Deck 4 -->
+            <div class="game-container info-box">
+               <div id="on-deck-game4" class="on-deck-game"></div>
+            </div>
+            <div class="flex-row">
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-names4"></div>
+               </div>
+               <div class="info-box mar-r" style="flex: 2">
+                  <div id="on-deck-category4"></div>
+               </div>
+               <div class="info-box" style="flex: 1">
+                  <div id="on-deck-estimate4"></div>
+               </div>
+            </div>
          </div>
       </div>
+
    </body>
 </html>

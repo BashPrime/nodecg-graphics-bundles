@@ -1,66 +1,121 @@
+:root {
+
+    /* Omnibar CSS variables. */
+    --omnibar-foreground-color: #FFFFFF;
+    --omnibar-background-color: #3a3a3a;
+    --omnibar-border-color: #f4b938;
+    --omnibar-font-family: 'Barlow SemiBold';
+
+    --donation-foreground-color: #FFFFFF;
+    --donation-background-color: #1f1f1f;
+    --donation-font-family: 'Barlow Bold';
+
+    --marathon-logo-foreground-color: #FFFFFF;
+    --marathon-logo-background-color: #1f1f1f;
+
+    --content-primary-color: #ffffff;
+    --content-secondary-color: #f4b938;
+    --content-tertiary-color: #ab4d1b;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--omnibar-font-family);
+}
+
 #omnibar {
-	background-color: #3A3D18;
-	display: flex;
-	width: 1920px;
-	height: 82.5px;
-	border-style: solid;
-	border-width: 3px 0px 0px 0px;
-	border-color: #A1AC67;
+    color: var(--omnibar-foreground-color);
+    background-color: var(--omnibar-background-color);
+    display: flex;
+    width: 1920px;
+    height: 83px;
+    border-top: 3px solid var(--omnibar-border-color);
 }
 
-#omnibar > * {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+#omnibarContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-top: -2px;
 }
 
-#omnibar-content {
-	flex: 1;
+#omnibarContent p {
+    margin: 0;
 }
 
-#omnibar-content * {
-	display: initial;
+.singleLine {
+    font-size: 24pt;
 }
 
-.is-single-line {
-	font-size: 24pt;
+.multiLine {
+    font-size: 18pt;
+    margin: 0;
 }
 
-.is-multiline {
-	font-size: 18pt;
-	margin: 0;
+.primary {
+    color: var(--content-primary-color);
 }
 
-.is-text-centered {
-	margin: 0 auto;
+.secondary {
+    color: var(--content-secondary-color);
 }
 
-#charity-logo {
-	background-color: #4A511F;
-	padding: 0 0.5rem;
+.tertiary {
+    color: var(--content-tertiary-color);
 }
 
-#donation-total {
-	background-color: #4A511F;
-	padding: 0 0.75rem;
-	font-size: 36pt;
-	border-style: solid;
-	border-width: 0px 3px 0px 0px;
-	border-color: #A1AC67;
+#charityContainer {
+    color: var(--donation-foreground-color);
+    background-color: var(--donation-background-color);
+    font-size: 36pt;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 7.5px;
 }
 
-#marathon-logo {
-	background-color: #606A22;
-	padding: 0 1rem;
-	border-style: solid;
-	border-width: 0px 0px 0px 3px;
-	border-color: #A1AC67;
+#charityLogo {
+    height: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
-#charity-logo img {
-	height: 68px;
+#donationTotal {
+    font-family: 'Barlow Bold';
+    color: var(--content-secondary-color);
+    min-width: 100px;
+    text-align: right;
 }
 
-#marathon-logo img {
-	height: 82px;
+#charityText {
+    font-family: 'Barlow Bold';
+    font-size: 18px;
+    color: var(--content-tertiary-color);
+}
+
+#marathonLogo {
+    color: var(--marathon-logo-foreground-color);
+    background-color: var(--marathon-logo-background-color);
+    align-self: flex-end;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#charityLogo img {
+    height: 60px;
+    object-fit: contain;
+}
+
+#marathonLogo img {
+    margin: 10px;
+    height: 64px;
+    object-fit: contain;
 }

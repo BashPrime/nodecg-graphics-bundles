@@ -1,50 +1,51 @@
 /* Runner and pronouns panel. */
 .runner-container {
-	width: 404px;
+	width: 544px;
 	position: absolute;
+	bottom: 313px;
 }
 
 #runner-container1 {
-	top: 424px;
+	left: 412px;
+}
+
+#runner-container2 {
+	right: 412px;
 }
 
 /* Container for game info */
 #info-container {
-	width: 1487px;
+	width: 393px;
 	position: absolute;
-	left: 423px;
-	bottom: 84px;
+	left: 10px;
+	bottom: 93px;
 }
 
 /* Game name panel. */
 #game-container {
-	height: 80px;
+	height: 70px;
 }
 
-.info-box #console {
-	flex: 2;
-}
-
-.info-box #estimate {
-	flex: 1;
+#game-name {
+	font-size: 85px;
 }
 
 /* Timer panel. */
 #timer {
-	font-size: 135px;
-	height: 130px;
+	font-size: 86px;
+	height: 90px;
 }
 
 /* Sponsor panel. */
 #sponsor-container {
-	width: 404px;
-	height: 513px;
-	left: 10px;
+	width: 393px;
+	height: 259px;
+	right: 10px;
 	bottom: 93px;
 }
 
 /* Sponsor image max size. */
 img#sponsor-img {
-	max-width: 100%;
+	max-width: 90%;
 	max-height: 100%;
 }

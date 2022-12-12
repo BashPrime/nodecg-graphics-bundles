@@ -54,11 +54,13 @@ function fadeText(selector, text, fixSize) {
 }
 
 function FixSize(selector, callback) {
-	let divWidth = $(selector + ":visible").width();
+	// The selector's parent will likely have a static width set, so use it.
+	let divWidth = $(selector).parent().width();
 	let fontSize = 92;
 
-	// Reset font to default size to start.
+	// Reset element to default font-size and width to start.
 	$(selector).css("font-size", "");
+	$(selector).width("");
 
 	let text_org = $(selector + ":visible").html();
 	let text_update = '<span style="white-space:nowrap;">' + text_org + '</span>';

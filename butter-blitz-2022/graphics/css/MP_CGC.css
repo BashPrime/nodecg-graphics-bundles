@@ -1,24 +1,31 @@
 /* Runner and pronouns panel. */
+#info-container, #timer {
+	width: 591px;
+}
+
 .runner-container {
-	width: 404px;
+	width: 344px;
 	position: absolute;
+	bottom: 311px;
 }
 
 #runner-container1 {
-	top: 424px;
+	left: 611px;
+}
+
+#runner-container2 {
+	right: 611px;
 }
 
 /* Container for game info */
 #info-container {
-	width: 1487px;
 	position: absolute;
-	left: 423px;
-	bottom: 84px;
+	bottom: 93px;
 }
 
 /* Game name panel. */
 #game-container {
-	height: 80px;
+	height: 76px;
 }
 
 .info-box #console {
@@ -31,20 +38,9 @@
 
 /* Timer panel. */
 #timer {
-	font-size: 135px;
-	height: 130px;
-}
-
-/* Sponsor panel. */
-#sponsor-container {
-	width: 404px;
-	height: 513px;
-	left: 10px;
+	font-size: 125px;
+	height: 125px;
+	position: absolute;
+	right: 10px;
 	bottom: 93px;
-}
-
-/* Sponsor image max size. */
-img#sponsor-img {
-	max-width: 100%;
-	max-height: 100%;
 }
