@@ -26,7 +26,7 @@ async function setText(type, index, value) {
 	try {
 		if (type === "message") {
 			text.message = [
-				`<p class="singleLine">Butter Blitz is benefiting the <span class="singleLine secondary">ACLU</span></p>`,
+				`<p class="singleLine">Butter Blitz is benefiting the <span class="singleLine secondary">American Civil Liberties Union (ACLU)</span></p>`,
 				`<p class="singleLine">Donate at <span class="singleLine secondary">donate.bashprime.com</span></p>`
 			];
 		}

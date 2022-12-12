@@ -165,6 +165,7 @@ body {
 	text-align: center;
 	color: #f4b938;
 	background: none;
+	font-variant-numeric: tabular-nums;
 }
 
 .timer_stopped {
